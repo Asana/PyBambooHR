@@ -655,7 +655,7 @@ class PyBambooHR(object):
         return r.json()
         # return utils.transform_whos_out(r.content)
 
-    def get_time_off_requests(self, start_date=None, end_date=None, status=None, type=None, employee_id=None):
+    def get_time_off_requests(self, start_date=None, end_date=None, status=None, type=None, employee_id=None, action=None):
         """
         API method for returning a list of time off requests
         https://www.bamboohr.com/api/documentation/time_off.php#getRequests
@@ -673,6 +673,8 @@ class PyBambooHR(object):
             params['type'] = type
         if employee_id:
             params['employeeId'] = employee_id
+        if action:
+            params['action'] = action
 
         r = self._query('time_off/requests', params, raw=True)
         return r.json()
